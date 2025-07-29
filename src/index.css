@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Vera IT Design System - Space theme with purple gradients
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Space background theme */
+    --background: 225 15% 8%;
+    --foreground: 0 0% 100%;
+
+    /* Card with subtle transparency */
+    --card: 225 15% 12%;
+    --card-foreground: 0 0% 100%;
+
+    /* Popover styling */
+    --popover: 225 15% 12%;
+    --popover-foreground: 0 0% 100%;
+
+    /* Vera IT Purple branding */
+    --primary: 270 100% 70%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 280 100% 80%;
+
+    /* Secondary purple tones */
+    --secondary: 225 15% 15%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Muted elements */
+    --muted: 225 15% 18%;
+    --muted-foreground: 225 10% 65%;
+
+    /* Accent colors */
+    --accent: 270 100% 70%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Error states */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Form elements */
+    --border: 225 15% 25%;
+    --input: 225 15% 15%;
+    --ring: 270 100% 70%;
+
+    /* Design tokens */
+    --radius: 0.75rem;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(270 100% 70%), hsl(280 100% 60%));
+    --gradient-background: radial-gradient(ellipse at center, hsl(270 100% 10% / 0.3) 0%, hsl(225 15% 8%) 70%);
+    --gradient-card: linear-gradient(145deg, hsl(225 15% 12% / 0.8), hsl(225 15% 8% / 0.6));
+    
+    /* Shadows and effects */
+    --shadow-glow: 0 0 20px hsl(270 100% 70% / 0.3);
+    --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.3);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Particles and dots */
+    --dot-color: hsl(270 100% 70% / 0.4);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  /* Light mode - keeping space theme but lighter */
+  .light {
+    --background: 225 20% 15%;
+    --foreground: 0 0% 95%;
+    --card: 225 20% 18%;
+    --card-foreground: 0 0% 95%;
+    --popover: 225 20% 18%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 270 100% 65%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 225 20% 22%;
+    --secondary-foreground: 0 0% 95%;
+    --muted: 225 20% 25%;
+    --muted-foreground: 225 15% 70%;
+    --accent: 270 100% 65%;
+    --accent-foreground: 0 0% 100%;
+    --border: 225 20% 30%;
+    --input: 225 20% 20%;
+    --ring: 270 100% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background: var(--gradient-background);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  
+  /* Space particles effect */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      radial-gradient(2px 2px at 20px 30px, var(--dot-color), transparent),
+      radial-gradient(2px 2px at 40px 70px, var(--dot-color), transparent),
+      radial-gradient(1px 1px at 90px 40px, var(--dot-color), transparent),
+      radial-gradient(1px 1px at 130px 80px, var(--dot-color), transparent),
+      radial-gradient(2px 2px at 160px 30px, var(--dot-color), transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    animation: twinkle 20s linear infinite;
+    pointer-events: none;
+    z-index: -1;
+  }
+  
+  @keyframes twinkle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+}
+
+@layer components {
+  .vera-card {
+    @apply bg-card border border-border rounded-lg;
+    background: var(--gradient-card);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-card);
+  }
+  
+  .vera-button-primary {
+    @apply bg-primary text-primary-foreground;
+    background: var(--gradient-primary);
+    box-shadow: var(--shadow-glow);
+    transition: var(--transition-smooth);
+  }
+  
+  .vera-button-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px hsl(270 100% 70% / 0.5);
+  }
+}
